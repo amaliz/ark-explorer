@@ -3,24 +3,22 @@
 #
 # http://github.com/ArkEcosystem/ark-explorer
 #
-#FROM kkarczmarczyk/node-yarn:8.0-slim
-FROM node:9.6.0-slim
+FROM zenika/alpine-node:latest
 
 COPY . /src/ark-explorer
 
-RUN apt-get update && apt-get install -y curl apt-transport-https bzip2 git
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    apt-get update && apt-get install -y yarn
+RUN npm install -g yarn
 
 RUN cd /src/ark-explorer \
- && yarn install \
- && yarn build:mainnet
+ && yarn install 
 
 WORKDIR /src/ark-explorer
 
-EXPOSE 8080
-# Define the entrypoint script.
+ENV NETWORK mainnet
 
-CMD ["yarn","dev:devnet"]
+# Define the entrypoint script.
+#ENTRYPOINT ["yarn","dev","--host","0.0.0.0","--env.network","$NETWORK"]
+ENTRYPOINT ["./entrypoint.sh"]
+
 # Expose ports.
+EXPOSE 8080

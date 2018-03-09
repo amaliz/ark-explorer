@@ -1,0 +1,11 @@
+# files
+.DS_Store
+.dockerignore
+docker-compose.yml
+Dockerfile
+package-lock.json
+README.md
+
+# directories
+node_modules
+test
