@@ -6,8 +6,10 @@
   "Market Cap": "Market Cap",
 
   "All rights reserved": "All rights reserved",
+  "Version": "Version",
+  "Date": "Date",
 
-  "Loading...": "Loading...",
+  "No Results": "No Results",
 
   "Transactions": "Transactions",
   "Confirmations": "Confirmations",
